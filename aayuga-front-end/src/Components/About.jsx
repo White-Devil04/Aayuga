@@ -6,22 +6,32 @@ import gsap from 'gsap';
 
 function About() {
   useGSAP(()=> {
-    gsap.from('#about-left', {
+    gsap.to('#about-left', {
       opacity: 0,
       x:-100,
       scrollTrigger: {
         trigger: '#about',
-        start: 'top 50%',
-        end: 'top top ',
+        start: 'bottom 90%',
+        end: 'bottom 30% ',
         scrub: 2,
+      }
+    }),
+    gsap.to('#about-right', {
+      opacity: 0,
+      x:100,
+      scrollTrigger: {
+        trigger: '#about',
+        start: 'bottom 90%',
+        end: 'bottom 30% ',
+        scrub: 2
       }
     })
   },[]);
     return (
-        <div id="about" className="flex h-screen w-full items-center bg-blue-100">
+        <div id="about" className="flex h-screen w-full items-center bg-blue-100 overflow-x-hidden">
           <img id="about-left" src={leftImage} height='450px' width='270px' className='rounded-lg drop-shadow-lg mx-32'/>
           <img id="about-flower" src={logo} height='200px' width='200px' className='-m-12 '/>
-      <div className='ms-32'>
+      <div id="about-right" className='ms-32 z-1'>
       <h1 className="text-6xl font-bold my-2">About</h1>
       <p className="text-2xl font-semibold mt-4">What is <span className='font-bold text-blue-500'>Aayuga</span> ?</p>
       <p className='me-8'>Aayuga is platfrom which provides the AI based Personal Diet planner, Yoga Trainer and Health Advisor for 24x7.</p>

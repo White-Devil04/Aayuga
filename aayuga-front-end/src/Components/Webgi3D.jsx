@@ -93,7 +93,7 @@ function Webgi3D() {
     
 
     return ( 
-        <div className='fixed flex w-screen h-screen bg-transparent flex-col items-center justify-end z-5 pointer-events-none'>
+        <div className='fixed flex w-screen h-screen bg-transparent flex-col items-center justify-end z-10 pointer-events-none'>
             <canvas className='h-screen w-full bg-transparent' ref={canvasRef}/>
         </div>
      );

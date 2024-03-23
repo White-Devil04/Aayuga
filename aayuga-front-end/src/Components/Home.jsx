@@ -1,13 +1,13 @@
 import React from 'react';
 import logo from '../utils/logo-light.png';
-import {useGSAP} from '@gsap/react';
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-function Home () {
+function Home() {
 
-  useGSAP(() =>{
+  useGSAP(() => {
     gsap.to('#home-left', {
-      opacity:0,
+      opacity: 0,
       x: -100,
       scrollTrigger: {
         trigger: '#home',
@@ -16,16 +16,16 @@ function Home () {
         scrub: 2,
       }
     })
-  },[]);
+  }, []);
 
   return (
     <div id="home" className="flex h-screen w-full items-center bg-gradient-to-t from-blue-100">
       <div id="home-left" className='mx-24'>
-      <h1 className="text-7xl font-bold  my-2">Aayuga</h1>
-      <p className="text-2xl font-semibold mb-2">Your Personal <span className='font-extrabold text-blue-500'>YOGA</span> Your Trainer</p>
-      <p className='text-sm'>Your<br/><span className='font-semibold text-blue-500'>Personal</span> Diet Planner <br/><span className='font-semibold text-blue-500'>Personal</span> Yoga Trainer <br/><span className='font-semibold text-blue-500'>Personal</span> Health Advisor</p>
+        <h1 className="text-7xl font-bold  my-2">Aayuga</h1>
+        <p className="text-2xl font-semibold mb-2">Your Personal <span className='font-extrabold text-blue-500'>YOGA</span> Your Trainer</p>
+        <p className='text-sm'>Your<br /><span className='font-semibold text-blue-500'>Personal</span> Diet Planner <br /><span className='font-semibold text-blue-500'>Personal</span> Yoga Trainer <br /><span className='font-semibold text-blue-500'>Personal</span> Health Advisor</p>
       </div>
-      <img id="home-flower" src={logo} height='400px' width='400px' className='ms-52'/>
+      <img id="home-flower" src={logo} height='400px' width='400px' className='ms-52' />
     </div>
   );
 }

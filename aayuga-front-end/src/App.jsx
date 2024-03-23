@@ -3,6 +3,7 @@ import Home from './Components/Home.jsx';
 import About from './Components/About.jsx';
 import Webgi3D from './Components/Webgi3D.jsx';
 import Services from './Components/Services.jsx';
+import Contact from './Components/Contact.jsx';
 function App() {
 
   return (
@@ -12,6 +13,7 @@ function App() {
       <Home/>
       <About/>
       <Services/>
+      <Contact/>
     </div>
   );
 }

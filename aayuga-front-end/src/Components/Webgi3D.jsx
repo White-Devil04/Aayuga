@@ -1,10 +1,11 @@
-import React,{
+import React, {
     useRef,
     useState,
     useCallback,
     forwardRef,
     useImperativeHandle,
-    useEffect} from 'react';
+    useEffect
+} from 'react';
 import {
     ViewerApp,
     AssetManagerPlugin,
@@ -21,82 +22,82 @@ import {
 
 } from "webgi";
 import gsap from 'gsap';
-import { ScrollTrigger} from 'gsap/ScrollTrigger';
-import {scrollAnimation} from '../lib/scroll-animation.js';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scrollAnimation } from '../lib/scroll-animation.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Webgi3D() {
     const canvasRef = useRef(null);
 
-    const memoizedScrollAnimation=useCallback(
+    const memoizedScrollAnimation = useCallback(
         (position, target, onUpdate) => {
-            if(position && target && onUpdate) {
+            if (position && target && onUpdate) {
                 scrollAnimation(position, target, onUpdate);
             }
-        },[]
+        }, []
     );
-     
-    const setupViewer = useCallback(async ()=> {
 
-            const viewer = new ViewerApp({
-                canvas: canvasRef.current,
-            })
-            
-            const manager=await viewer.addPlugin(AssetManagerPlugin)
+    const setupViewer = useCallback(async () => {
 
-            const camera = viewer.scene.activeCamera;
-            const position = camera.position;
-            const target = camera.target;
-            const onUpdate=()=> {
-                needUpdate = true;
-                viewer.setDirty();
-            };
+        const viewer = new ViewerApp({
+            canvas: canvasRef.current,
+        })
 
-            await viewer.addPlugin(GBufferPlugin)
-            await viewer.addPlugin(new ProgressivePlugin(32))
-            await viewer.addPlugin(new TonemapPlugin(true))
-            await viewer.addPlugin(GammaCorrectionPlugin)
-            await viewer.addPlugin(SSRPlugin)
-            await viewer.addPlugin(SSAOPlugin)
-            await viewer.addPlugin(BloomPlugin)
-        
-            await addBasePlugins(viewer);
-        
-            await viewer.addPlugin(CanvasSnipperPlugin)
+        const manager = await viewer.addPlugin(AssetManagerPlugin)
 
-            viewer.renderer.refreshPipeline()
-        
-            await manager.addFromPath("scene-2.glb")
+        const camera = viewer.scene.activeCamera;
+        const position = camera.position;
+        const target = camera.target;
+        const onUpdate = () => {
+            needUpdate = true;
+            viewer.setDirty();
+        };
 
-            viewer.getPlugin(TonemapPlugin).config.clipBackground=true;
+        await viewer.addPlugin(GBufferPlugin)
+        await viewer.addPlugin(new ProgressivePlugin(32))
+        await viewer.addPlugin(new TonemapPlugin(true))
+        await viewer.addPlugin(GammaCorrectionPlugin)
+        await viewer.addPlugin(SSRPlugin)
+        await viewer.addPlugin(SSAOPlugin)
+        await viewer.addPlugin(BloomPlugin)
 
-            camera.setCameraOptions({controlsEnabled: false});
-            window.scrollTo(0,0);
+        await addBasePlugins(viewer);
 
-            let needUpdate = true;
+        await viewer.addPlugin(CanvasSnipperPlugin)
 
-            viewer.addEventListener("preFrame",()=>{
-                if(needUpdate) {
-                    camera.positionTargetUpdated(true)
-                    needUpdate = false;
-                }
-            });
+        viewer.renderer.refreshPipeline()
 
-        memoizedScrollAnimation(position,target,onUpdate);
-    },[]);
-    
+        await manager.addFromPath("scene-2.glb")
+
+        viewer.getPlugin(TonemapPlugin).config.clipBackground = true;
+
+        camera.setCameraOptions({ controlsEnabled: false });
+        window.scrollTo(0, 0);
+
+        let needUpdate = true;
+
+        viewer.addEventListener("preFrame", () => {
+            if (needUpdate) {
+                camera.positionTargetUpdated(true)
+                needUpdate = false;
+            }
+        });
+
+        memoizedScrollAnimation(position, target, onUpdate);
+    }, []);
+
     useEffect(() => {
         setupViewer();
-    },[]);
+    }, []);
 
-    
 
-    return ( 
+
+    return (
         <div className='fixed flex w-screen h-screen bg-transparent flex-col items-center justify-end z-10 pointer-events-none'>
-            <canvas className='h-screen w-full bg-transparent' ref={canvasRef}/>
+            <canvas className='h-screen w-full bg-transparent' ref={canvasRef} />
         </div>
-     );
+    );
 }
 
 export default Webgi3D;

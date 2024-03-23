@@ -64,9 +64,9 @@ export const scrollAnimation = (position, target, onUpdate) => {
         },
       });
   t1.to(position, {
-    x: -18.13,
-    y: 6.38,
-    z: 8.16,
+    x: -17.47,
+    y: 6.22,
+    z: 8.91,
     scrollTrigger: {
       trigger: "#contact",
       start: "top bottom",
@@ -76,9 +76,9 @@ export const scrollAnimation = (position, target, onUpdate) => {
     },
     onUpdate,
   }).to(target, {
-    x: -3.83,
-    y: 2.33,
-    z: -5.16,
+    x: -3.21,
+    y: 2.18,
+    z: -4.41,
     scrollTrigger: {
       trigger: "#contact",
       start: "top bottom",

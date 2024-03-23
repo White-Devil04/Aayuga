@@ -1,9 +1,6 @@
 import React,{
     useRef,
-    useState,
     useCallback,
-    forwardRef,
-    useImperativeHandle,
     useEffect} from 'react';
 import {
     ViewerApp,
@@ -16,8 +13,7 @@ import {
     BloomPlugin,
     CanvasSnipperPlugin,
     GammaCorrectionPlugin,
-    addBasePlugins,
-    // mobileAndTabletCheck
+    addBasePlugins
 
 } from "webgi";
 import gsap from 'gsap';
@@ -36,7 +32,7 @@ function Webgi3D() {
             }
         },[]
     );
-     
+    
     const setupViewer = useCallback(async ()=> {
 
             const viewer = new ViewerApp({
@@ -96,7 +92,7 @@ function Webgi3D() {
         <div className='fixed flex w-screen h-screen bg-transparent flex-col items-center justify-end z-10 pointer-events-none'>
             <canvas className='h-screen w-full bg-transparent' ref={canvasRef}/>
         </div>
-     );
+    );
 }
 
 export default Webgi3D;

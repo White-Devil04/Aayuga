@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState } from 'react';
 import logo from '../utils/logo.png';
 
 const Navbar = () => {
@@ -15,6 +15,7 @@ const Navbar = () => {
    const contactScorll = () => {
       document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
    }
+   const [isLoggedIn, setIsLoggedIn] = useState(false); // Set this to true when the user logs in
 
    return (
       <div id="navbar" className='fixed top-0 w-full flex content-between justify-between items-center bg-blue-300 z-50'>
@@ -24,11 +25,15 @@ const Navbar = () => {
          </div>
          <div className='flex items-center m-2'>
             <ul className='flex items-center mr-12'>
-               <button className='mx-5 text-xl font-semibold' onClick={homeScorll}>Home</button>
-               <button className='mx-5 text-xl font-semibold' onClick={aboutScorll}>About</button>
-               <button className='mx-5 text-xl font-semibold' onClick={servicesScorll}>Services</button>
-               <button className='mx-5 text-xl font-semibold' onClick={contactScorll}>Contact</button>
+               <button className='mx-4 text-xl font-semibold' onClick={homeScorll}>Home</button>
+               <button className='mx-4 text-xl font-semibold' onClick={aboutScorll}>About</button>
+               <button className='mx-4 text-xl font-semibold' onClick={servicesScorll}>Services</button>
+               <button className='mx-4 text-xl font-semibold' onClick={contactScorll}>Contact</button>
+
             </ul>
+            <div className='flex items-center m-2'>
+               
+            </div>
          </div>
       </div>
    )

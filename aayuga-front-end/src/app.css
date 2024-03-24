@@ -1,0 +1,63 @@
+.App {
+    text-align: center;
+ }
+ 
+ .middle-container {
+    @media only screen and (max-width:800px) {
+       flex-direction: column;
+       margin: 0 30px;
+ 
+    }
+ }
+ 
+ .QnA-container {
+    @media only screen and (max-width:800px) {
+       width: auto;
+       margin-top: 20px;
+       margin-bottom: 20px;
+    }
+ }
+ 
+ .history-container {
+    @media only screen and (max-width:800px) {
+       height: 400px;
+       width: 500px;
+       margin-top: 20px;
+       margin-bottom: 20px;
+    }
+ }
+ 
+ .history {
+    @media only screen and (max-width:800px) {
+       width: auto;
+       height: 300px;
+    }
+ }
+ 
+ .overlay-container {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ }
+ 
+ .instruction {
+    margin: 10px;
+    letter-spacing: 0.5px;
+    color: black;
+    font-weight: 400;
+    margin-top: 20px;
+ }
+ 
+ .pose-demo-img {
+    height: 400px;
+    aspect-ratio: 1;
+    border-radius: 15px;
+ }
+ 
+ #webcam {
+    transform: rotateY(180deg);
+ }
+ 
+ #my-canvas {
+    transform: rotateY(180deg);
+ }

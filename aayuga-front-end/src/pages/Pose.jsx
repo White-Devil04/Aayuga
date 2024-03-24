@@ -1,9 +1,12 @@
 import React from 'react'
+import Header from '../Components/Header'
+import Yoga from '../Components/Yoga'
 
 const Pose = () => {
   return (
     <div>
-      Pose
+      <Header />
+      <Yoga />
     </div>
   )
 }

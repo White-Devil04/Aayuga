@@ -20,7 +20,7 @@ function Home() {
 
   return (
     <div id="home" className="flex h-screen w-full items-center bg-gradient-to-t from-blue-100">
-      <div id="home-left" className='mx-24'>
+      <div id="home-left" className='mx-24 text-left'>
         <h1 className="text-7xl font-bold  my-2">Aayuga</h1>
         <p className="text-2xl font-semibold mb-2">Your Personal <span className='font-extrabold text-blue-500'>YOGA</span> Your Trainer</p>
         <p className='text-sm'>Your<br /><span className='font-semibold text-blue-500'>Personal</span> Diet Planner <br /><span className='font-semibold text-blue-500'>Personal</span> Yoga Trainer <br /><span className='font-semibold text-blue-500'>Personal</span> Health Advisor</p>

@@ -1,19 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../utils/logo.png';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Navbar = () => {
+   const location = useLocation();
+   console.log(location);
+   const navigate = useNavigate();
+   const [isLoggedIn, setIsLoggedIn] = useState(false);
+   const [username, setUsername] = useState('');
+   const [user, setUser] = useState();
+   const [isHomePage, setIsHomePage] = useState(true);
+   useEffect(() => {
+      if (location.pathname != '/') {
+         setIsHomePage(false);
+      }
+      else {
+         setIsHomePage(true);
+      }
+   }, [location]);
 
-   const homeScorll = () => {
+   useEffect(() => {
+      const checkLoginStatus = async () => {
+         try {
+            const token = document.cookie.split('; ').find(row => row.startsWith('Token='));
+            if (token) {
+               const tokenValue = token.split('=')[1];
+               const response = await axios.get('/api/user/profile', {
+                  headers: {
+                     Authorization: `Bearer ${tokenValue}`
+                  }
+               });
+               setUser(response.data.user);
+               setUsername(response.data.user.username);
+               setIsLoggedIn(true);
+            }
+         } catch (error) {
+            console.error('Error checking login status:', error);
+         }
+      };
+
+      checkLoginStatus();
+   }, []);
+
+   const homeScroll = () => {
       document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
-   }
-   const aboutScorll = () => {
+   };
+
+   const aboutScroll = () => {
       document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-   }
-   const servicesScorll = () => {
+   };
+
+   const servicesScroll = () => {
       document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-   }
-   const contactScorll = () => {
+   };
+
+   const contactScroll = () => {
       document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+   };
+
+   const handleLogin = () => {
+      navigate('/login');
+   };
+
+   const handleProfile = () => {
+      navigate('/profile');
    }
 
    return (
@@ -24,10 +75,23 @@ const Navbar = () => {
          </div>
          <div className='flex items-center m-2'>
             <ul className='flex items-center mr-12'>
-               <button className='mx-5 text-xl font-semibold' onClick={homeScorll}>Home</button>
-               <button className='mx-5 text-xl font-semibold' onClick={aboutScorll}>About</button>
-               <button className='mx-5 text-xl font-semibold' onClick={servicesScorll}>Services</button>
-               <button className='mx-5 text-xl font-semibold' onClick={contactScorll}>Contact</button>
+               {(isHomePage) ? <>
+                  <button className='mx-4 text-xl font-semibold' onClick={homeScroll}>Home</button>
+                  <button className='mx-4 text-xl font-semibold' onClick={aboutScroll}>About</button>
+                  <button className='mx-4 text-xl font-semibold' onClick={servicesScroll}>Services</button>
+                  <button className='mx-4 text-xl font-semibold' onClick={contactScroll}>Contact</button></>
+                  :
+                  <></>
+               }
+               {isLoggedIn ? (
+                  <li className='mx-4 text-xl font-semibold'>
+                     <button onClick={handleProfile}>{username}</button>
+                  </li>
+               ) : (
+                  <li className='mx-4 text-xl font-semibold'>
+                     <button onClick={handleLogin}>Login</button>
+                  </li>
+               )}
             </ul>
          </div>
       </div>

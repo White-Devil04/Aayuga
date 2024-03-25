@@ -1,32 +1,59 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Loading from './Loading';
+import { useNavigate } from 'react-router-dom';
 
-// renders only when user loggedIn
 const Profile = () => {
-   const handleSignout = () => {
+   const [user, setUser] = useState(null);
+   const navigate = useNavigate();
+   useEffect(() => {
+      const fetchUserProfile = async () => {
+         try {
+            const token = document.cookie.split('; ').find(row => row.startsWith('Token='));
+            if (token) {
+               const tokenValue = token.split('=')[1];
+               const response = await axios.get('/api/user/profile', {
+                  headers: {
+                     Authorization: `Bearer ${tokenValue}`
+                  }
+               });
+               setUser(response.data.user);
+            }
+         } catch (error) {
+            console.error('Error fetching user profile:', error);
+         }
+      };
 
-   }
+      fetchUserProfile();
+   }, []);
+
+   const handleLogout = async () => {
+      try {
+         document.cookie = 'Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+         setUser(null);
+         navigate('/')
+         window.location.reload();
+      } catch (error) {
+         console.error('Error logging out:', error);
+      }
+   };
+
    return (
-      <div className='bg-slate-200 mx-[3vw]'>
-         <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover"
-            data-dropdown-trigger="hover" className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 text-center inline-flex items-center" type="button">
-            <img src='' alt=''></img>
-            <h2 className='mx-1'>UserName</h2>
-            <div className='text-3xl'><i className="ri-arrow-drop-down-fill"></i></div>
-         </button>
-         <div id="dropdownHover" className="z-10 hidden divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
-               <li>
-                  <Link to="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Your Profile</Link>
-               </li>
-               <li>
-                  <button onClick={handleSignout}>SignOut</button>
-               </li>
-            </ul>
-         </div>
-
+      <div className="flex flex-col items-center justify-center h-screen">
+         {user ? (
+            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+               <h2 className="text-2xl font-bold mb-4">Welcome, {user.username}!</h2>
+               <p className="text-lg mb-4">Email: {user.email}</p>
+               <p className="text-lg mb-4">Height: {user.height} cm</p>
+               <p className="text-lg mb-4">Weight: {user.weight} kg</p>
+               <p className="text-lg mb-4">Blood Group: {user.bloodGroup}</p>
+               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleLogout}>Logout</button>
+            </div>
+         ) : (
+            <Loading />
+         )}
       </div>
-   )
-}
+   );
+};
 
-export default Profile
+export default Profile;

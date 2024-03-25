@@ -10,4 +10,4 @@ function LogoTitle() {
    )
 }
 
-export default LogoTitle
+export default LogoTitle;

@@ -19,9 +19,6 @@ let poseList = [
 ]
 
 let interval
-
-// flag variable is used to help capture the time when AI just detect 
-// the pose as correct(probability more than threshold)
 let flag = false
 
 async function initializeTensorFlow() {
@@ -50,7 +47,8 @@ function Yoga() {
       if ((currentTime - startingTime) / 1000 > bestPerform) {
          setBestPerform(timeDiff)
       }
-   }, [currentTime, startingTime, bestPerform])
+   }, [currentTime])
+
 
 
    useEffect(() => {
@@ -119,14 +117,12 @@ function Yoga() {
       const detectorConfig = { modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER };
       const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, detectorConfig);
       const poseClassifier = await tf.loadLayersModel('https://models.s3.jp-tok.cloud-object-storage.appdomain.cloud/model.json')
-      const countAudio = new Audio(count)
-      countAudio.loop = true
       interval = setInterval(() => {
-         detectPose(detector, poseClassifier, countAudio)
+         detectPose(detector, poseClassifier)
       }, 100)
    }
 
-   const detectPose = async (detector, poseClassifier, countAudio) => {
+   const detectPose = async (detector, poseClassifier) => {
       if (
          typeof webcamRef.current !== "undefined" &&
          webcamRef.current !== null &&
@@ -164,6 +160,8 @@ function Yoga() {
             })
             if (notDetected > 4) {
                skeletonColor = 'rgb(255,255,255)'
+               setPoseTime(0);
+               setStartingTime(new Date(Date()).getTime());
                return
             }
             const processedInput = landmarks_to_embedding(input)
@@ -171,27 +169,22 @@ function Yoga() {
 
             classification.array().then((data) => {
                const classNo = CLASS_NO[currentPose]
-               console.log(data[0][classNo])
                setAccuracy(data[0][classNo]);
                if (data[0][classNo] > 0.97) {
-
                   if (!flag) {
-                     setStartingTime(new Date(Date()).getTime())
+                     setStartingTime(new Date().getTime())
                      flag = true
                   }
-                  setCurrentTime(new Date(Date()).getTime())
+                  setCurrentTime(new Date().getTime())
                   skeletonColor = 'rgb(0,255,0)'
                } else {
                   flag = false
                   skeletonColor = 'rgb(255,255,255)'
-                  countAudio.currentTime = 0
                }
             })
          } catch (err) {
             console.log(err)
          }
-
-
       }
    }
 
@@ -209,7 +202,7 @@ function Yoga() {
 
    if (isStartPose) {
       return (
-         <div className="yoga-container">
+         <div className="yoga-container mt-20">
             <div className="flex justify-center items-center m-2">
                <div className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-3 w-[240px] h-[40px]">
                   Accuracy: {(accuracy * 100).toFixed(2)} %
@@ -262,7 +255,7 @@ function Yoga() {
 
    return (
       <div
-         className=""
+         className="mt-20"
       >
          <DropDown
             poseList={poseList}

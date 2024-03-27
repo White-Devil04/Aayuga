@@ -42,9 +42,9 @@ function Services() {
     }
 
     return (
-        <div id="services" className="flex h-screen w-full items-center bg-gradient-to-b from-blue-100">
+        <div id="services" className="flex h-screen w-full items-center bg-gradient-to-b from-[#72ddf5]">
             <div id="services-left" className='mx-24'>
-                <div id='services-left' className='mx-4 rounded-xl bg-blue-300 flex'>
+                <div id='services-left' className='mx-4 rounded-xl bg-[#22c9ef] flex'>
                     <div id='cht-bt' className='flex flex-col w-60 mx-4 my-5 items-center'>
                         <video src={cht_bt} autoPlay loop muted className='w-56 mb-4 rounded-lg'></video>
                         <p>We provide the <span className='font-bold'>chatbot</span> which gives you 24x7 advice According to your doubts related to Health, just for you on your fingure tips!!</p>

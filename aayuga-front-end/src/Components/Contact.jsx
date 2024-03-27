@@ -2,7 +2,7 @@ import logo from '../utils/logo.png';
 function Contact() {
     return (
         <div>
-            <div id="contact" className="flex h-72 w-full items-center z-20 bg-blue-300">
+            <div id="contact" className="flex h-72 w-full items-center bg-[#22c9ef]">
                 <div className='mx-8 flex items-center'>
                     <img src={logo} height='200px' width='200px' className='mx-28' />
                     <ul>
@@ -14,7 +14,7 @@ function Contact() {
                 </div>
 
             </div>
-                <footer className='w-full text-center bg-blue-300 text-sm'> @all Rights are Reserved by Aayuga.</footer>
+                <footer className='w-full text-center bg-[#22c9ef] text-sm'> @all Rights are Reserved by Aayuga.</footer>
         </div>
     );
 }

@@ -85,11 +85,11 @@ const Navbar = () => {
                }
                {isLoggedIn ? (
                   <li className='mx-4 text-xl font-semibold'>
-                     <button onClick={handleProfile}>{username}</button>
+                     <button onClick={handleProfile} className='font-bold'>{username}</button>
                   </li>
                ) : (
                   <li className='mx-4 text-xl font-semibold'>
-                     <button onClick={handleLogin}>Login</button>
+                     <button onClick={handleLogin} className='font-bold py-2 px-4 border-1 border-black rounded-lg'>Login</button>
                   </li>
                )}
             </ul>

@@ -37,7 +37,6 @@ function About() {
         <p className='me-8'>Aayuga is platfrom which provides the AI based Personal Diet planner, Yoga Trainer and Health Advisor for 24x7.</p>
         <p className="text-2xl font-semibold mt-4">Why <span className='font-bold text-[#2262ef]'>Aayuga</span> is needed nowadays ?</p>
         <p className='me-8'>Modern lifestyle trends of prolonged sitting, reduced exercise, and poor dietary choices lead to health issues, shortening lives and productivity. Ayurveda and yoga offer holistic health solutions, yet access is limited due to high costs. Lack of resources hinders hiring personal trainers and diet planners for convenient fitness routines.<br /> Here, where Aayuga Come to your help to solve this problem.</p>
-
       </div>
     </div>
   );

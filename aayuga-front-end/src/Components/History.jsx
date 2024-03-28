@@ -40,24 +40,24 @@ const History = ({ isChange }) => {
       fetchChatData();
    }, [isChange]);
    return (
-      <div className='history-container bg-slate-400 w-[30vw] rounded-md'>
+      <div className='history-container bg-[#72ddf5] w-[30vw] rounded-md'>
          <div className='flex content-between justify-between items-center my-4 mx-[7vw] text-xl'>
             <p >Clear History</p>
             <button className='' onClick={handleClear}>
                <i className="ri-delete-bin-line"></i>
             </button>
          </div>
-         <div className='history bg-slate-600 h-[500px] m-6 rounded-md overflow-y-hidden scroll-bar-hidden'>
+         <div className='history bg-gray-100 h-[500px] m-6 rounded-md overflow-y-hidden scroll-bar-hidden'>
             <ul>
                {(chatHistory.length === 0) ? "No chat history available" :
                   chatHistory.map((chat, index) => (
-                     <li className='flex justify-between items-center mx-2 my-4' key={index}>
+                     <li className='flex justify-between items-center mx-2 my-4 bg-white rounded-md px-1 drop-shadow-md' key={index}>
                         <div className='flex justify-center items-center'>
-                           <button onClick={() => handleView(chat)} className='bg-slate-300 p-1 rounded-md h-[30px]'>View</button>
+                           <button onClick={() => handleView(chat)} className='bg-[#2262ef] hover:bg-blue-700 text-sm text-white rounded-lg py-1 px-2 h-[30px]'>View</button>
                            <p className='m-2 text-xl'><i className="ri-arrow-right-circle-line"></i></p>
                         </div>
-                        <p className='mx-1'>{chat.question}</p>
-                        <p className='mx-1'>{`${chat.date}/${chat.month}/${chat.year}`}</p>
+                        <p className='mx-1 text-sm'>{chat.question}</p>
+                        <p className='mx-1 text-sm'>{`${chat.date}/${chat.month}/${chat.year}`}</p>
                      </li>
                   ))
                }
@@ -67,7 +67,7 @@ const History = ({ isChange }) => {
             </div>
             {viewChat &&
                (
-                  <div className="overlay-container w-[1000px] overlay fixed bg-slate-800 pt-[10px] pb-[30px] px-[50px] rounded-xl text-white">
+                  <div className="overlay-container w-[1000px] overlay fixed bg-dark pt-[10px] pb-[30px] px-[50px] rounded-xl text-white">
                      <div className="chat-view">
                         <button onClick={handleCloseView} className='absolute top-5 right-10 text-3xl'>
                            <i className="ri-close-circle-fill"></i>

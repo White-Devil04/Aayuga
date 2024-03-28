@@ -202,15 +202,15 @@ function Yoga() {
 
    if (isStartPose) {
       return (
-         <div className="yoga-container mt-20">
-            <div className="flex justify-center items-center m-2">
-               <div className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-3 w-[240px] h-[40px]">
+         <div className="yoga-container mt-20 bg-gradient-to-t from-[#72ddf5]">
+            <div className="flex justify-center items-center m-2 ">
+               <div className="text-white bg-[#2262ef]  font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-3 w-[240px] h-[40px]">
                   Accuracy: {(accuracy * 100).toFixed(2)} %
                </div>
-               <div className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-3 w-[180px] h-[40px]">
+               <div className="text-white bg-[#2262ef]  font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-3 w-[180px] h-[40px]">
                   Pose Time: {poseTime} s
                </div>
-               <div className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-3 w-[180px] h-[40px]">
+               <div className="text-white bg-[#2262ef] font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-3 w-[180px] h-[40px]">
                   Best: {bestPerform} s
                </div>
             </div>
@@ -247,7 +247,7 @@ function Yoga() {
             </div>
             <button
                onClick={stopPose}
-               className="rounded-md bg-slate-300 px-3 py-2 m-4"
+               className="rounded-md bg-[#2262ef] hover:bg-blue-700 text-white px-3 py-2 m-4"
             >Stop Pose</button>
          </div>
       )
@@ -255,7 +255,7 @@ function Yoga() {
 
    return (
       <div
-         className="mt-20"
+         className="mt-20 bg-gradient-to-t from-[#72ddf5]"
       >
          <DropDown
             poseList={poseList}
@@ -266,7 +266,7 @@ function Yoga() {
          />
          <button
             onClick={startYoga}
-            className="rounded-md m-10 bg-slate-300 px-3 py-2"
+            className="rounded-lg m-10 bg-[#2262ef] hover:bg-blue-700 text-white px-3 py-2"
          >Start Pose</button>
       </div>
    )

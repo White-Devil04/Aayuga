@@ -39,7 +39,7 @@ const Profile = () => {
    };
 
    return (
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-t from-[#72ddf5]">
          {user ? (
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                <h2 className="text-2xl font-bold mb-4">Welcome, {user.username}!</h2>
@@ -47,7 +47,7 @@ const Profile = () => {
                <p className="text-lg mb-4">Height: {user.height} cm</p>
                <p className="text-lg mb-4">Weight: {user.weight} kg</p>
                <p className="text-lg mb-4">Blood Group: {user.bloodGroup}</p>
-               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleLogout}>Logout</button>
+               <button className="bg-[#2262ef] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" onClick={handleLogout}>Logout</button>
             </div>
          ) : (
             <Loading />

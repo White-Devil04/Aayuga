@@ -23,10 +23,10 @@ export default function DropDown({ poseList, setCurrentPose }) {
             className=''
 
         >
-            <button className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 text-center inline-flex justify-center items-start m-3 w-[300px]" type="button" onClick={handleView}>
+            <button className="text-white bg-[#2262ef] hover:bg-blue-800 font-medium rounded-lg text-sm px-2 text-center inline-flex justify-center items-start m-3 w-[300px]" type="button" onClick={handleView}>
                 <h2 className='mx-1 p-3'>Select Pose</h2>
             </button>
-            <div className="overlay fixed overlay-container rounded-lg bg-gray-700 w-[400px]">
+            <div className="overlay mt-8 fixed overlay-container rounded-lg bg-gray-700 w-[400px]">
                 {(viewChat) && <ul className="grid grid-cols-1 text-sm text-gray-700 dark:text-gray-200 px-[100px]">
                     {poseList.map((pose, index) => (
                         <div key={index}>

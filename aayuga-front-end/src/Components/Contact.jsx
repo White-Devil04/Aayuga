@@ -14,7 +14,7 @@ function Contact() {
                 </div>
 
             </div>
-                <footer className='w-full text-center bg-[#22c9ef] text-sm'> @all Rights are Reserved by Aayuga.</footer>
+            <footer className='w-full text-center bg-[#22c9ef] text-sm pb-3'> @All Rights are Reserved by Aayuga.</footer>
         </div>
     );
 }

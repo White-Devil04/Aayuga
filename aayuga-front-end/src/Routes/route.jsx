@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Navbar from '../Components/Navbar';
 import Loading from '../Components/Loading.jsx';
 import Profile from '../Components/Profile.jsx';
-const ChatBot = lazy(() => import('../Pages/ChatBot.jsx'));
+const ChatBot = lazy(() => import('../pages/ChatBot.jsx'));
 const HomePage = lazy(() => import('../Pages/HomePage.jsx'));
 const Pose = lazy(() => import('../Pages/Pose.jsx'));
 const Login = lazy(() => import('../Components/Login.jsx'));

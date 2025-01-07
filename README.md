@@ -2,7 +2,6 @@
 
 Aayuga is an AI-powered personal trainer designed to assist users in practicing yoga accurately and effectively. By leveraging advanced pose estimation techniques, Aayuga provides real-time feedback to ensure correct posture alignment during yoga sessions.
 
-
 ---
 
 ## Features
